@@ -1,0 +1,14 @@
+```
+== Feedback Help ==
+$edit          :: Edit a feedback request you have made.
+$feedback      :: Submits a feedback for the track with the given request ID. If your feedback is acceptable you will receive a point.
+$getFeedback   :: DMs all the feedback given for requests containing the given link.
+$need          :: Shows tracks requesting feedback that have not recieved any
+$points        :: The current points for the requesting user.
+$post          :: Posts a feedback request people can comment on. You must have at least one point to post a track for feedback.
+$recent        ::
+== Author ==
+DreadLord#1337
+Twitter: https://twitter.com/dreadlordgg
+Github: https://github.com/dreadlordgg
+```

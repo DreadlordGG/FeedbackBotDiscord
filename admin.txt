@@ -1,0 +1,9 @@
+```== Admin Help ==
+$join          :: Edit a feedback request you have made.
+$leave      :: Submits a feedback for the track with the given request ID. If your feedback is acceptable you will receive a point.
+$max_tokens   :: DMs all the feedback given for requests containing the given link.
+$award          :: Shows tracks requesting feedback that have not recieved any
+$points        :: The current points for the requesting user.
+$post          :: Posts a feedback request people can comment on. You must have at least one point to post a track for feedback.
+$recent        ::
+```
