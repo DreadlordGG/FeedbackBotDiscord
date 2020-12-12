@@ -14,5 +14,4 @@ def push_data(guild,category,channel,min_length,max_feedback):
 def get_data(guild):
     query = db.select([census]).where(guild == guild)
     data = connection.execute(query).fetchall()
-    print(query,data)
     return data

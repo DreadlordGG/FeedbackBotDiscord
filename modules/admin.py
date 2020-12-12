@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 import FeedbackBotDB
 import sqlalchemy as db
 load_dotenv()
+
+#Bot initialization function
 async def init(client,message):
         def check(m):
              return m.channel == channel and m.author.name == author
@@ -19,7 +21,7 @@ async def init(client,message):
         await message.channel.send("Category name?")
         msg = await client.wait_for('message', check=check)
         config['category'] = msg.content
-        
+
         # Get channel name
         await message.channel.send("Channel name?")
         msg = await client.wait_for('message', check=check)
@@ -68,4 +70,3 @@ async def init(client,message):
         if general_channel is None:
             await message.guild.create_text_channel(config['channel'],category=category)
         FeedbackBotDB.push_data(config['guild'],config['category'],config['channel'],config['min_lenght'],config['max_feedback'])
-

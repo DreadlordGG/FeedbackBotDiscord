@@ -4,9 +4,8 @@ import discord
 from dotenv import load_dotenv
 import FeedbackBotDB
 import sqlalchemy as db
-import modules.admin
-help_text=open("help.txt", "r").read()
-help_text_admin=open("admin.txt", "r").read()
+import modules.admin, modules.requests, modules.help, modules.users, modules.about
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 guild = os.getenv('DISCORD_SERVER')
@@ -31,17 +30,19 @@ async def on_guild_join(guild):
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content.startswith('$feedback') and message.channel.name == 'feedback':
-        if len(message.content) - 14 <= FeedbackBotDB.get_data(message.guild.id)[0].min_length:
-            print(len(message.content))
-            await message.channel.send("Too short")
-        else:
-            await message.channel.send("Good")
-    if message.content.startswith('$help') and message.channel.name == 'feedback':
-        await message.channel.send(help_text)
+
+    #help section
+    if message.content.startswith('$help'):
+        await modules.help.print_user(message)
     if  message.content.startswith('$help') and message.author.guild_permissions.administrator and message.channel.name == 'feedback-control':
-        await message.channel.send(help_text_admin)
-    
+        await modules.help.print_admin(message)
+
+    #about section
+    if message.content.startswith('$about'):
+        await modules.about.print(message)
+    if message.content.startswith('$feedback'):
+        await modules.requests.feedback(client,message,FeedbackBotDB)
+
     ### Initial configuration for server ###
     if  message.content.startswith('$init') and message.author.guild_permissions.administrator and message.channel.name == 'feedback-control':
         await modules.admin.init(client,message)
